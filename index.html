@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f8f6">
+<meta name="description" content="simple — Creative design, social media and AI portfolio.">
+<title>simple — Creative Portfolio</title>
+
+<style>
+:root {
+  --bg: #f8f8f6;
+  --surface: #fff;
+  --text: #191919;
+  --muted: #777773;
+  --line: #e7e7e2;
+  --accent: #635bff;
+  --radius: 17px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+header {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  background: rgba(248,248,246,.94);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+}
+
+.logo {
+  font-size: 29px;
+  font-weight: 850;
+  letter-spacing: -2px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+.instagram-link {
+  background: var(--text);
+  color: white;
+  padding: 12px 17px;
+  border-radius: 30px;
+}
+
+.instagram-link:hover {
+  opacity: .8;
+}
+
+.hero {
+  padding: 75px 6% 45px;
+  display: grid;
+  grid-template-columns: 1.4fr .6fr;
+  align-items: end;
+  gap: 30px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(54px, 9vw, 112px);
+  line-height: .91;
+  letter-spacing: -7px;
+  margin: 20px 0;
+}
+
+.hero h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero p {
+  max-width: 470px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.hero-side {
+  justify-self: end;
+  max-width: 250px;
+  padding-bottom: 10px;
+}
+
+.availability {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #37a96b;
+}
+
+.toolbar {
+  padding: 22px 6%;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter {
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: .2s;
+}
+
+.filter:hover,
+.filter.active {
+  color: white;
+  background: var(--text);
+  border-color: var(--text);
+}
+
+main {
+  padding: 35px 6% 80px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 23px;
+}
+
+.section-heading h2 {
+  font-size: 20px;
+  letter-spacing: -.7px;
+}
+
+.section-heading span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 22px;
+}
+
+.project {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.cover {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #e8e6e2;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.cover img,
+.cover video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .45s;
+}
+
+.project:hover .cover img,
+.project:hover .cover video {
+  transform: scale(1.045);
+}
+
+.cover video {
+  background: #171717;
+}
+
+.cover-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #eee9ff, #d7d0ff);
+}
+
+.cover-placeholder .big {
+  font-size: clamp(28px, 4vw, 55px);
+  font-weight: 900;
+  letter-spacing: -3px;
+}
+
+.cover-placeholder small {
+  margin-top: 8px;
+  letter-spacing: 3px;
+  font-size: 9px;
+}
+
+.project-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 13px;
+}
+
+.project-info h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.project-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.project-number {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.about {
+  margin: 0 6% 70px;
+  padding: 45px;
+  border-radius: 22px;
+  background: #eeecff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.about h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -3px;
+  margin: 12px 0;
+}
+
+.about p {
+  color: #55536a;
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-content: center;
+}
+
+.skill {
+  background: rgba(255,255,255,.7);
+  padding: 11px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 27px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+footer strong {
+  color: var(--text);
+  font-size: 20px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  background: rgba(15,15,18,.88);
+  padding: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  width: min(900px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  position: relative;
+}
+
+.modal-content img,
+.modal-content video {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.modal-gallery {
+  margin-top: 12px;
+}
+
+.modal-stage {
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 54px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.modal-stage img,
+.modal-stage video {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  background: #171717;
+}
+
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(25, 25, 28, .88);
+  color: white;
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.gallery-nav:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
+.gallery-prev { left: 8px; }
+.gallery-next { right: 8px; }
+
+.gallery-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.gallery-counter {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.modal-content .project-description {
+  margin: 5px 5px 15px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media(max-width:520px) {
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    padding: 12px;
+    max-height: 95vh;
+  }
+
+  .modal-stage {
+    padding: 10px 42px;
+  }
+
+  .gallery-nav {
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
+  }
+}
+
+.modal-content h2 {
+  margin: 18px 5px 5px;
+}
+
+.modal-content p {
+  margin: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: 0;
+  background: white;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  font-size: 22px;
+  z-index: 2;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  padding: 50px 15px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed #ccc;
+  border-radius: var(--radius);
+}
+
+@media(max-width:800px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 55px;
+  }
+
+  .hero-side {
+    justify-self: start;
+  }
+
+  .hero h1 {
+    letter-spacing: -4px;
+  }
+
+  .about {
+    padding: 30px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width:520px) {
+  header {
+    height: 65px;
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+
+  .nav {
+    gap: 13px;
+  }
+
+  .nav .nav-work {
+    display: none;
+  }
+
+  .instagram-link {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .hero {
+    padding: 50px 5% 35px;
+  }
+
+  .hero h1 {
+    font-size: 62px;
+  }
+
+  .toolbar {
+    padding: 18px 5%;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  main {
+    padding: 27px 5% 55px;
+  }
+
+  .grid {
+    gap: 22px 12px;
+  }
+
+  .cover {
+    border-radius: 11px;
+  }
+
+  .project-info h3 {
+    font-size: 12px;
+  }
+
+  .about {
+    margin: 0 5% 50px;
+    padding: 25px;
+  }
+
+  footer {
+    padding: 22px 5%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#" class="logo">simple<span>.</span></a>
+
+  <nav class="nav">
+    <a class="nav-work" href="#work">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a class="instagram-link"
+       href="https://www.instagram.com/itissimple2026/"
+       target="_blank"
+       rel="noopener noreferrer">Instagram ↗</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Independent Creative Portfolio · 2026</div>
+    <h1>Ideas into<br><em>visuals.</em></h1>
+    <p>
+      A collection of visual experiments, social media designs,
+      creative campaigns and digital experiences.
+      Thoughtfully designed. Simply presented.
+    </p>
+  </div>
+
+  <div class="hero-side">
+    <div class="availability">
+      <span class="dot"></span>
+      Open to opportunities
+    </div>
+    <p>Graphic Design · Social Media · AI Visuals · Video</p>
+  </div>
+</section>
+
+<section class="toolbar" id="work">
+  <div class="filters">
+    <button class="filter active" data-filter="All">All work</button>
+    <button class="filter" data-filter="Social Media">Social Media Campaign</button>
+    <button class="filter" data-filter="Graphic Design">Visual Identity</button>
+    <button class="filter" data-filter="Video">Motion &amp; Storytelling</button>
+    <button class="filter" data-filter="AI">AI Visuals</button>
+  </div>
+</section>
+
+<main>
+  <div class="section-heading">
+    <h2>Selected projects</h2>
+    <span id="projectCount">04 projects</span>
+  </div>
+
+  <div class="grid" id="projectGrid"></div>
+</main>
+
+<section class="about" id="about">
+  <div>
+    <div class="eyebrow">A little about me</div>
+    <h2>Creativity,<br>with purpose.</h2>
+
+    <p>
+      I create visual content that helps ideas and brands communicate clearly.
+      My work combines design, storytelling and digital creativity
+      to build engaging visual experiences.
+    </p>
+
+    <a class="instagram-link"
+       style="display:inline-block;margin-top:8px"
+       href="https://www.instagram.com/itissimple2026/"
+       target="_blank"
+       rel="noopener noreferrer">Let's connect ↗</a>
+  </div>
+
+  <div class="skills">
+    <span class="skill">Graphic Design</span>
+    <span class="skill">Social Media</span>
+    <span class="skill">Content Creation</span>
+    <span class="skill">AI Art Direction</span>
+    <span class="skill">Video Editing</span>
+    <span class="skill">Visual Storytelling</span>
+    <span class="skill">Creative Campaigns</span>
+  </div>
+</section>
+
+<footer>
+  <strong>simple.</strong>
+  <span>Designed by simple © <span id="year"></span></span>
+  <a href="https://www.instagram.com/itissimple2026/"
+     target="_blank"
+     rel="noopener noreferrer">Instagram ↗</a>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <div id="modalMedia"></div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalCategory"></p>
+  </div>
+</div>
+
+<script>
+
+/*
+=========================================================
+إعداد المشاريع
+=========================================================
+
+لكل قسم مجلد يحمل الاسم نفسه تمامًا.
+تم ربط كل ملفات المجلدات الحالية أدناه بأسمائها الفعلية.
+تأكدي من إبقاء أسماء المجلدات والملفات مطابقة تمامًا لما هو موجود عندك.
+
+مثال صورة:
+{ file: "design-01.jpg", title: "Design 01", type: "image" }
+
+مثال فيديو:
+{ file: "motion-01.mp4", title: "Motion 01", type: "video" }
+
+مهم: أسماء الملفات والمسارات في هذه القائمة مطابقة لبنية المجلدات التي زودتِني بها.
+*/
+
+const projects = [
+  {
+    title: "Social Media Campaign",
+    category: "Social Media",
+    folder: "Social Media Campaign",
+    cover: "cover.jpg",
+    files: [
+      { file: "design-01.jpg", title: "Campaign Design 01", type: "image" },
+      { file: "design-02.jpg", title: "Campaign Design 02", type: "image" },
+      { file: "design-03.jpg", title: "Campaign Design 03", type: "image" }
+    ]
+  },
+  {
+    title: "Visual Identity",
+    category: "Graphic Design",
+    folder: "Visual Identity",
+    cover: "cover.jpg",
+    files: [
+      { file: "design-01.jpg", title: "Visual Identity Design 01", type: "image" },
+      { file: "design-02.jpg", title: "Visual Identity Design 02", type: "image" },
+      { file: "design-03.jpg", title: "Visual Identity Design 03", type: "image" }
+    ]
+  },
+  {
+    title: "Motion & Storytelling",
+    category: "Video",
+    folder: "Motion & Storytelling",
+    cover: "cover.mp4",
+    files: [
+      { file: "motion-01.mp4", title: "Motion Project 01", type: "video" },
+      { file: "motion-02.mp4", title: "Motion Project 02", type: "video" },
+      { file: "motion-03.mp4", title: "Motion Project 03", type: "video" }
+    ]
+  },
+  {
+    title: "AI Visuals",
+    category: "AI",
+    folder: "AI Visuals",
+    cover: "cover.jpg",
+    files: [
+      { file: "visual-01.jpg", title: "AI Visual 01", type: "image" },
+      { file: "visual-02.jpg", title: "AI Visual 02", type: "image" },
+      { file: "visual-03.jpg", title: "AI Visual 03", type: "image" }
+    ]
+  }
+];
+
+const grid = document.getElementById("projectGrid");
+const count = document.getElementById("projectCount");
+let activeFilter = "All";
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+function getMediaType(filename, explicitType) {
+  if (explicitType) return explicitType;
+  return /\.(mp4|webm|ogg|mov|m4v)$/i.test(filename) ? "video" : "image";
+}
+
+function getProjectMedia(project) {
+  const base = project.folder + "/";
+  const media = [];
+
+  if (project.cover) {
+    media.push({
+      file: project.cover,
+      title: project.title + " — Cover",
+      type: getMediaType(project.cover),
+      src: base + project.cover,
+      isCover: true
+    });
+  }
+
+  (project.files || []).forEach(file => {
+    media.push({
+      file: file.file,
+      title: file.title || file.file.replace(/\.[^.]+$/, "").replace(/[_-]/g, " "),
+      type: getMediaType(file.file, file.type),
+      src: base + file.file,
+      isCover: false
+    });
+  });
+
+  return media;
+}
+
+function showPlaceholder(container, title, subtitle) {
+  container.innerHTML = "";
+  const placeholder = document.createElement("div");
+  placeholder.className = "cover-placeholder";
+  placeholder.innerHTML =
+    `<span class="big">${escapeHTML(title)}</span>
+     <small>${escapeHTML(subtitle)}</small>`;
+  container.appendChild(placeholder);
+}
+
+function renderProjects() {
+  grid.innerHTML = "";
+
+  const visible = projects.filter(project =>
+    activeFilter === "All" || project.category === activeFilter
+  );
+
+  count.textContent =
+    `${visible.length} project${visible.length === 1 ? "" : "s"}`;
+
+  if (!visible.length) {
+    grid.innerHTML = '<div class="empty">No projects in this category yet.</div>';
+    return;
+  }
+
+  visible.forEach((project, index) => {
+    const card = document.createElement("article");
+    card.className = "project";
+
+    const cover = document.createElement("div");
+    cover.className = "cover";
+    const coverType = getMediaType(project.cover || "");
+
+    if (project.cover && coverType === "image") {
+      const img = document.createElement("img");
+      img.src = project.folder + "/" + project.cover;
+      img.alt = project.title;
+      img.loading = "lazy";
+      img.onerror = () => {
+        // If a cover file is missing, omit this project card instead of showing an error/empty cover.
+        card.remove();
+        const remaining = grid.querySelectorAll(".project").length;
+        count.textContent = `${remaining} project${remaining === 1 ? "" : "s"}`;
+      };
+      cover.appendChild(img);
+    } else if (project.cover && coverType === "video") {
+      const video = document.createElement("video");
+      video.src = project.folder + "/" + project.cover;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("aria-label", project.title + " cover");
+      video.addEventListener("loadeddata", () => {
+        try { video.currentTime = 0.1; } catch (e) {}
+      }, { once: true });
+      video.onerror = () => {
+        // If a cover video is missing, omit this project card instead of showing an error/empty cover.
+        card.remove();
+        const remaining = grid.querySelectorAll(".project").length;
+        count.textContent = `${remaining} project${remaining === 1 ? "" : "s"}`;
+      };
+      cover.appendChild(video);
+    } else {
+      showPlaceholder(cover, project.title, project.category);
+    }
+
+    const info = document.createElement("div");
+    info.className = "project-info";
+
+    const text = document.createElement("div");
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const category = document.createElement("p");
+    const mediaCount = (project.files || []).length;
+    category.textContent = project.category + " · " +
+      (mediaCount + (project.cover ? 1 : 0)) + " media";
+
+    text.append(title, category);
+
+    const number = document.createElement("span");
+    number.className = "project-number";
+    number.textContent = String(index + 1).padStart(2, "0");
+
+    info.append(text, number);
+    card.append(cover, info);
+    card.addEventListener("click", () => openProject(project));
+    grid.appendChild(card);
+  });
+}
+
+let currentProjectMedia = [];
+let currentMediaIndex = 0;
+
+function renderGalleryItem() {
+  const stage = document.getElementById("galleryStage");
+  const title = document.getElementById("galleryCaption");
+  const counter = document.getElementById("galleryCounter");
+  if (!stage || !currentProjectMedia.length) return;
+
+  stage.querySelectorAll("video").forEach(video => video.pause());
+  stage.innerHTML = "";
+  const item = currentProjectMedia[currentMediaIndex];
+  const element = document.createElement(item.type === "video" ? "video" : "img");
+
+  if (item.type === "video") {
+    element.controls = true;
+    element.playsInline = true;
+    element.preload = "metadata";
+  } else {
+    element.alt = item.title;
+    element.loading = "lazy";
+  }
+  element.src = item.src;
+  element.onerror = () => {
+    // Silently skip files that do not exist or cannot be loaded; never show an error slide.
+    const failedIndex = currentMediaIndex;
+    currentProjectMedia.splice(failedIndex, 1);
+    if (currentMediaIndex >= currentProjectMedia.length) {
+      currentMediaIndex = Math.max(0, currentProjectMedia.length - 1);
+    }
+    const modalCategory = document.getElementById("modalCategory");
+    if (modalCategory) {
+      modalCategory.textContent = currentProjectMedia.length
+        ? `${currentProjectMedia.length} media` : "";
+    }
+    if (!currentProjectMedia.length) {
+      const modal = document.getElementById("modal");
+      if (modal) modal.classList.remove("open");
+      const modalMedia = document.getElementById("modalMedia");
+      if (modalMedia) modalMedia.innerHTML = "";
+      return;
+    }
+    renderGalleryItem();
+  };
+
+  const prev = document.createElement("button");
+  prev.className = "gallery-nav gallery-prev";
+  prev.type = "button";
+  prev.textContent = "‹";
+  prev.setAttribute("aria-label", "Previous item");
+  prev.disabled = currentMediaIndex === 0;
+  prev.addEventListener("click", () => {
+    if (currentMediaIndex > 0) { currentMediaIndex--; renderGalleryItem(); }
+  });
+
+  const next = document.createElement("button");
+  next.className = "gallery-nav gallery-next";
+  next.type = "button";
+  next.textContent = "›";
+  next.setAttribute("aria-label", "Next item");
+  next.disabled = currentMediaIndex === currentProjectMedia.length - 1;
+  next.addEventListener("click", () => {
+    if (currentMediaIndex < currentProjectMedia.length - 1) { currentMediaIndex++; renderGalleryItem(); }
+  });
+
+  stage.append(element, prev, next);
+  title.textContent = item.title;
+  counter.textContent = `${currentMediaIndex + 1} / ${currentProjectMedia.length}`;
+}
+
+function openProject(project) {
+  const mediaContainer = document.getElementById("modalMedia");
+  mediaContainer.innerHTML = "";
+  currentProjectMedia = getProjectMedia(project);
+  currentMediaIndex = 0;
+
+  if (!currentProjectMedia.length) {
+    // No media available: do not show an empty/error placeholder.
+    document.getElementById("modal").classList.remove("open");
+    return;
+  } else {
+    const gallery = document.createElement("div");
+    gallery.className = "modal-gallery";
+    const stage = document.createElement("div");
+    stage.className = "modal-stage";
+    stage.id = "galleryStage";
+    const caption = document.createElement("div");
+    caption.className = "gallery-caption";
+    const captionTitle = document.createElement("span");
+    captionTitle.id = "galleryCaption";
+    const counter = document.createElement("span");
+    counter.className = "gallery-counter";
+    counter.id = "galleryCounter";
+    caption.append(captionTitle, counter);
+    gallery.append(stage, caption);
+    mediaContainer.appendChild(gallery);
+    renderGalleryItem();
+  }
+
+  document.getElementById("modalTitle").textContent = project.title;
+  document.getElementById("modalCategory").textContent =
+    project.category + " · " + currentProjectMedia.length + " media";
+  document.getElementById("modal").classList.add("open");
+}
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(item =>
+      item.classList.remove("active")
+    );
+    button.classList.add("active");
+    activeFilter = button.dataset.filter;
+    renderProjects();
+  });
+});
+
+function closeModal() {
+  document.getElementById("modal").classList.remove("open");
+  document.querySelectorAll("#modalMedia video").forEach(video => video.pause());
+  document.getElementById("modalMedia").innerHTML = "";
+}
+
+document.getElementById("closeModal").addEventListener("click", closeModal);
+document.getElementById("modal").addEventListener("click", event => {
+  if (event.target.id === "modal") closeModal();
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeModal();
+  if (!document.getElementById("modal").classList.contains("open")) return;
+  if (event.key === "ArrowLeft" && currentMediaIndex > 0) {
+    currentMediaIndex--; renderGalleryItem();
+  }
+  if (event.key === "ArrowRight" && currentMediaIndex < currentProjectMedia.length - 1) {
+    currentMediaIndex++; renderGalleryItem();
+  }
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+renderProjects();
+
+</script>
+
+</body>
+</html>
